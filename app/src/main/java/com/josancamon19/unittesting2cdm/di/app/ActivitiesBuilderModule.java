@@ -1,6 +1,6 @@
 package com.josancamon19.unittesting2cdm.di.app;
 
-import com.josancamon19.unittesting2cdm.NotesListActivity;
+import com.josancamon19.unittesting2cdm.ui.noteslist.NotesListActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

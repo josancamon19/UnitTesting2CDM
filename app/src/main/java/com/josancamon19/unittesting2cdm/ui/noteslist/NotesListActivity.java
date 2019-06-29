@@ -1,7 +1,8 @@
-package com.josancamon19.unittesting2cdm;
+package com.josancamon19.unittesting2cdm.ui.noteslist;
 
 import android.os.Bundle;
 
+import com.josancamon19.unittesting2cdm.R;
 import com.josancamon19.unittesting2cdm.data.NoteRepository;
 
 import javax.inject.Inject;
