@@ -1,18 +1,14 @@
 package com.josancamon19.unittesting2cdm.models;
 
-import com.josancamon19.unittesting2cdm.models.Note;
-import com.josancamon19.unittesting2cdm.util.TestUtil;
-
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 
+import static com.josancamon19.unittesting2cdm.util.TestUtil.TIMESTAMP_1;
+import static com.josancamon19.unittesting2cdm.util.TestUtil.TIMESTAMP_2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class TestNote {
 
-    public static final String TIMESTAMP_1 = "05-2019";
-    public static final String TIMESTAMP_2 = "04-2019";
 
     @Test
     public void isNotesEqual_identicalProperties_returnTrue() throws Exception {

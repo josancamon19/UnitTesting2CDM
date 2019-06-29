@@ -6,6 +6,7 @@ import androidx.room.Room;
 
 import com.josancamon19.unittesting2cdm.data.NoteDao;
 import com.josancamon19.unittesting2cdm.data.NoteDatabase;
+import com.josancamon19.unittesting2cdm.data.NoteRepository;
 
 import javax.inject.Singleton;
 
@@ -29,7 +30,13 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public NoteDao provideNoteDao(NoteDatabase database){
+    public NoteDao provideNoteDao(NoteDatabase database) {
         return database.noteDao();
+    }
+
+    @Singleton
+    @Provides
+    public NoteRepository provideNoteRepository(NoteDao noteDao) {
+        return new NoteRepository(noteDao);
     }
 }
