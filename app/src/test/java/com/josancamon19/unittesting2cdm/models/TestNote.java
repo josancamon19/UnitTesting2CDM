@@ -1,4 +1,4 @@
-package com.josancamon19.unittesting2cdm;
+package com.josancamon19.unittesting2cdm.models;
 
 import com.josancamon19.unittesting2cdm.models.Note;
 

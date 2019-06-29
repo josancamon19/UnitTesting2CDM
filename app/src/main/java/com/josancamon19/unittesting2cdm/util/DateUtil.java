@@ -10,9 +10,9 @@ public class DateUtil {
     private static final String TAG = "Utility";
 
     public static final String[] monthNumbers = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
-    private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-    private static final String GET_MONTH_ERROR = "Error. Invalid month number.";
-    private static final String DATE_FORMAT = "MM-yyyy";
+    public static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    public static final String GET_MONTH_ERROR = "Error. Invalid month number.";
+    public static final String DATE_FORMAT = "MM-yyyy";
 
     @SuppressLint("SimpleDateFormat")
     public static String getCurrentTimeStamp() throws Exception {
