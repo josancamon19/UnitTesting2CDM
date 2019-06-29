@@ -1,6 +1,7 @@
 package com.josancamon19.unittesting2cdm.models;
 
 import com.josancamon19.unittesting2cdm.models.Note;
+import com.josancamon19.unittesting2cdm.util.TestUtil;
 
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
