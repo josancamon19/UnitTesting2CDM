@@ -28,7 +28,7 @@ public class NoteViewModel extends ViewModel {
         return LiveDataReactiveStreams.fromPublisher(repository.insertNote(note.getValue()));
     }
 
-    public LiveData<Note> getNote() {
+    public LiveData<Note> observeNote() {
         return note;
     }
 
