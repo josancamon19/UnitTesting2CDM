@@ -12,6 +12,8 @@ import io.reactivex.Single;
 import static com.josancamon19.unittesting2cdm.data.NoteRepository.INSERT_FAILURE;
 import static com.josancamon19.unittesting2cdm.data.NoteRepository.INSERT_SUCCESS;
 import static com.josancamon19.unittesting2cdm.data.NoteRepository.NOTE_TITLE_NULL;
+import static com.josancamon19.unittesting2cdm.data.NoteRepository.UPDATE_FAILURE;
+import static com.josancamon19.unittesting2cdm.data.NoteRepository.UPDATE_SUCCESS;
 import static com.josancamon19.unittesting2cdm.util.TestUtil.TEST_NOTE_1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -70,16 +72,65 @@ public class NoteRepositoryTest {
 
     @Test
     public void insertNoteNullTitle_throwException() throws Exception {
-        Exception exception =assertThrows(Exception.class, new Executable() {
+        Exception exception = assertThrows(Exception.class, new Executable() {
             @Override
             public void execute() throws Throwable {
-                 Note note = new Note(TEST_NOTE_1);
-                 note.setTitle(null);
-                 noteRepository.insertNote(note);
+                Note note = new Note(TEST_NOTE_1);
+                note.setTitle(null);
+                noteRepository.insertNote(note);
             }
         });
 
-        assertEquals(NOTE_TITLE_NULL,exception.getMessage());
+        assertEquals(NOTE_TITLE_NULL, exception.getMessage());
     }
 
+
+    @Test
+    public void updateNote_returnRow() throws Exception {
+        // Arrange
+        final int updatedRow = 1;
+        when(noteDao.updateNote(any(Note.class))).thenReturn(Single.just(updatedRow));
+
+        // Act
+        final Resource<Integer> returnedValue = noteRepository.updateNote(TEST_NOTE_1).blockingFirst();
+        // blocking first cause the return value is a Flowable, in others blockingSingle()
+
+        // Assert
+        verify(noteDao).updateNote(any(Note.class));
+        verifyNoMoreInteractions(noteDao);
+
+        assertEquals(Resource.success(1, UPDATE_SUCCESS), returnedValue);
+
+    }
+
+    @Test
+    public void updateNote_returnFailure() throws Exception {
+        // Arrange
+        final int updatedRow = -1;
+        when(noteDao.updateNote(any(Note.class))).thenReturn(Single.just(updatedRow));
+
+        // Act
+        final Resource<Integer> returnedValue = noteRepository.updateNote(TEST_NOTE_1).blockingFirst();
+
+        // Assert
+        verify(noteDao).updateNote(any(Note.class));
+        verifyNoMoreInteractions(noteDao);
+
+        assertEquals(Resource.error(null, UPDATE_FAILURE), returnedValue);
+    }
+
+
+    @Test
+    public void updateNoteNullTitle_throwException() throws Exception {
+        Exception exception = assertThrows(Exception.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                Note note = new Note(TEST_NOTE_1);
+                note.setTitle(null);
+                noteRepository.updateNote(note);
+            }
+        });
+
+        assertEquals(NOTE_TITLE_NULL, exception.getMessage());
+    }
 }
